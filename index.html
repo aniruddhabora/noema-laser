@@ -60,12 +60,12 @@
 <body class="bg-white text-navy">
 
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
-    <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-3" aria-label="Noema-Laser home">
-        <img src="images/noema-logo.png" alt="Noema-Laser logo" class="w-12 h-12 object-contain" />
+        <img src="images/noema-logo.png" alt="Noema-Laser logo" class="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
         <div>
-          <div class="font-extrabold tracking-[0.14em] text-sm sm:text-base">NOEMA-LASER</div>
-          <div class="text-[10px] tracking-[0.18em] text-slate-500 uppercase">AI Guided · Precise · Personalized</div>
+          <div class="font-extrabold tracking-[0.12em] text-sm sm:text-base">NOEMA-LASER</div>
+          <div class="hidden sm:block text-[10px] tracking-[0.18em] text-slate-500 uppercase">AI Guided · Precise · Personalized</div>
         </div>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
@@ -74,7 +74,7 @@
         <a href="#evidence" class="hover:text-navy">Evidence</a>
         <a href="#contact" class="hover:text-navy">Contact</a>
       </div>
-      <a href="#contact" class="hidden sm:inline-flex bg-navy text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-navy-light transition-colors">Start a conversation</a>
+      <a href="#contact" class="inline-flex bg-navy text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-navy-light transition-colors">Contact</a>
     </nav>
   </header>
 
@@ -82,24 +82,24 @@
 
     <section class="relative overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-navy-soft/50"></div>
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 relative">
         <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-12 lg:gap-16 items-center">
           <div>
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-7">
               <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
               <span class="text-xs font-bold tracking-wide text-slate-600 uppercase">Proposed outpatient precision-control platform</span>
             </div>
-            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[0.98] text-navy mb-6">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.02] sm:leading-[0.98] text-navy mb-5 sm:mb-6">
               AI-Guided<br />Precision<br class="hidden sm:block" /> Laser Therapy
             </h1>
-            <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">
+            <p class="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mb-7 sm:mb-8">
               Noema-Laser is designed to help clinicians deliver the safest effective laser dose by combining real-time thermal sensing, patient-specific heat modeling, and safety-constrained AI control.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#solution" class="inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">See how it works</a>
-              <a href="#evidence" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">View evidence pathway</a>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
+              <a href="#solution" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">See how it works</a>
+              <a href="#evidence" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">View evidence pathway</a>
             </div>
-            <div class="grid grid-cols-3 gap-4 max-w-xl">
+            <div class="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
               <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
                 <div class="text-2xl font-black text-brand-blue">01</div>
                 <div class="text-sm font-bold mt-1">See heat</div>
@@ -118,14 +118,14 @@
           <div class="relative">
             <div class="absolute -inset-6 bg-gradient-to-tr from-brand-blue/10 via-brand-purple/10 to-brand-coral/10 rounded-[2.5rem] blur-2xl"></div>
             <div class="relative bg-white rounded-[2rem] shadow-soft overflow-hidden border border-slate-100">
-              <img src="images/hero_clinicians.png" alt="Clinician using a precision laser device with a patient in an outpatient clinic" class="w-full h-[480px] object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-              <div class="placeholder-img hidden h-[480px]">
+              <img src="images/hero_clinicians.png" alt="Clinician using a precision laser device with a patient in an outpatient clinic" class="w-full h-[300px] sm:h-[420px] lg:h-[480px] object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="placeholder-img hidden h-[300px] sm:h-[420px] lg:h-[480px]">
                 <div>
                   <div class="text-3xl mb-2">📷</div>
                   Replace with <strong>images/hero_clinicians.png</strong><br />clinician + patient + device hero image
                 </div>
               </div>
-              <div class="p-5 bg-white grid grid-cols-3 gap-3 text-center">
+              <div class="p-4 sm:p-5 bg-white grid grid-cols-3 gap-2 sm:gap-3 text-center">
                 <div class="rounded-2xl bg-blue-50 p-4">
                   <div class="text-xs font-black text-blue-700 uppercase">AI-guided</div>
                 </div>
@@ -142,7 +142,7 @@
       </div>
     </section>
 
-    <section id="problem" class="py-20 lg:py-28 bg-white">
+    <section id="problem" class="py-16 sm:py-20 lg:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="max-w-3xl mb-12">
           <div class="accent-bar w-24 mb-5"></div>
@@ -177,7 +177,7 @@
       </div>
     </section>
 
-    <section id="solution" class="py-20 lg:py-28 bg-slate-50">
+    <section id="solution" class="py-16 sm:py-20 lg:py-28 bg-slate-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
           <div class="accent-bar w-24 mx-auto mb-5"></div>
@@ -189,7 +189,7 @@
 
         <div class="grid lg:grid-cols-3 gap-6">
           <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
-            <div class="h-64 bg-white flex items-center justify-center p-4">
+            <div class="h-48 sm:h-64 bg-white flex items-center justify-center p-3 sm:p-4">
               <img src="images/thermal_feedback.png" alt="Thermal imaging feedback visualization" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
               <div class="placeholder-img hidden h-full">images/thermal_feedback.png</div>
             </div>
@@ -200,7 +200,7 @@
             </div>
           </div>
           <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
-            <div class="h-64 bg-white flex items-center justify-center p-4">
+            <div class="h-48 sm:h-64 bg-white flex items-center justify-center p-3 sm:p-4">
               <img src="images/digital_twin.png" alt="Patient-specific digital twin heat model" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
               <div class="placeholder-img hidden h-full">images/digital_twin.png</div>
             </div>
@@ -211,7 +211,7 @@
             </div>
           </div>
           <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
-            <div class="h-64 bg-white flex items-center justify-center p-4">
+            <div class="h-48 sm:h-64 bg-white flex items-center justify-center p-3 sm:p-4">
               <img src="images/safety_control.png" alt="Safety-constrained AI dose control" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
               <div class="placeholder-img hidden h-full">images/safety_control.png</div>
             </div>
@@ -225,7 +225,7 @@
       </div>
     </section>
 
-    <section id="evidence" class="mesh text-white py-20 lg:py-28">
+    <section id="evidence" class="mesh text-white py-16 sm:py-20 lg:py-28">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-12 items-center">
           <div>
@@ -278,7 +278,7 @@
       </div>
     </section>
 
-    <section class="py-20 lg:py-28 bg-white">
+    <section class="py-16 sm:py-20 lg:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
           <div>
@@ -301,16 +301,16 @@
       </div>
     </section>
 
-    <section id="contact" class="bg-slate-50 py-20 lg:py-28 border-t border-slate-100">
+    <section id="contact" class="bg-slate-50 py-16 sm:py-20 lg:py-28 border-t border-slate-100">
       <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
         <div class="accent-bar w-24 mx-auto mb-5"></div>
         <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-navy mb-5">Let’s build safer laser therapy.</h2>
         <p class="text-lg text-slate-600 leading-relaxed mb-10">
           For investor conversations, clinical collaborations, pilot partners, media inquiries, or regulatory and reimbursement discussions.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <a href="mailto:aniruddha.bora@txstate.edu" class="inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">Contact Noema-Laser</a>
-          <a href="https://www.linkedin.com/in/aniruddha-bora-49b73a80/" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">LinkedIn</a>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12">
+          <a href="mailto:aniruddha.bora@txstate.edu" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">Contact Noema-Laser</a>
+          <a href="https://www.linkedin.com/in/aniruddha-bora-49b73a80/" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">LinkedIn</a>
         </div>
       </div>
     </section>
