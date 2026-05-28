@@ -4,277 +4,331 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noema-Laser — AI-Guided Precision Laser Therapy</title>
-  <meta name="description" content="Noema-Laser combines real-time thermal imaging with AI-driven control to deliver precise laser therapy that destroys tumors completely while protecting healthy tissue." />
+  <meta name="description" content="Noema-Laser is a proposed AI-guided control layer for outpatient laser therapy, combining real-time thermal sensing, patient-specific digital twin modeling, and safety-constrained dose control." />
   <meta name="theme-color" content="#0B2545" />
   <meta property="og:title" content="Noema-Laser — AI-Guided Precision Laser Therapy" />
-  <meta property="og:description" content="Real-time intelligence. Better outcomes. Safer care." />
+  <meta property="og:description" content="See heat. Predict spread. Treat precisely. Protect healthy tissue." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            navy: { DEFAULT: '#0B2545', deep: '#06182E', light: '#13315C' },
-            brand: { purple: '#6B3FA0', coral: '#E5614A', teal: '#2C9B8E' }
+            navy: { DEFAULT: '#0B2545', deep: '#06182E', light: '#13315C', soft: '#EAF1F9' },
+            brand: { purple: '#6B3FA0', coral: '#E5614A', teal: '#159A8C', blue: '#1D4ED8' }
           },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: { soft: '0 24px 70px rgba(11,37,69,0.12)' }
         }
       }
     }
   </script>
   <style>
+    html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-    .placeholder-img {
-      background:
-        linear-gradient(135deg, #1e3a5f 0%, #0B2545 100%);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.5); font-size: 14px; text-align: center;
-      padding: 2rem; min-height: 280px;
-    }
-    .placeholder-img.light { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); color: #64748b; }
     .accent-bar {
-      height: 3px;
+      height: 4px;
       background: linear-gradient(90deg, #1d4ed8 0%, #6B3FA0 35%, #c026d3 70%, #E5614A 100%);
-      border-radius: 2px;
+      border-radius: 999px;
     }
-    .feature-tile { transition: transform 0.2s ease; }
-    .feature-tile:hover { transform: translateY(-2px); }
+    .mesh {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(107,63,160,.18), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(229,97,74,.16), transparent 24%),
+        radial-gradient(circle at 70% 80%, rgba(21,154,140,.16), transparent 26%),
+        linear-gradient(135deg, #06182E 0%, #0B2545 60%, #13315C 100%);
+    }
+    .glass { backdrop-filter: blur(16px); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 24px 70px rgba(11,37,69,.14); }
+    .placeholder-img {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      min-height: 300px;
+    }
   </style>
 </head>
 <body class="bg-white text-navy">
 
-  <main class="max-w-[1400px] mx-auto">
-
-    <section class="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-0 bg-white">
-      <div class="px-8 sm:px-12 lg:px-16 py-12 lg:py-20 flex flex-col justify-center">
-        <div class="flex items-center gap-3 mb-10">
-          <svg viewBox="0 0 60 60" width="44" height="44" aria-hidden="true">
-            <circle cx="30" cy="30" r="26" fill="none" stroke="#6B3FA0" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7"/>
-            <circle cx="30" cy="30" r="22" fill="none" stroke="#6B3FA0" stroke-width="1" opacity="0.4"/>
-            <text x="30" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="26" fill="#0B2545">N</text>
-            <path d="M 49 11 L 51 16 L 56 18 L 51 20 L 49 25 L 47 20 L 42 18 L 47 16 Z" fill="#E5614A"/>
-          </svg>
-          <span class="font-bold tracking-[0.15em] text-navy text-lg">NOEMA-LASER</span>
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3" aria-label="Noema-Laser home">
+        <svg viewBox="0 0 60 60" width="42" height="42" aria-hidden="true">
+          <circle cx="30" cy="30" r="26" fill="none" stroke="#6B3FA0" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.75"/>
+          <circle cx="30" cy="30" r="22" fill="none" stroke="#6B3FA0" stroke-width="1" opacity="0.45"/>
+          <text x="30" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="26" fill="#0B2545">N</text>
+          <path d="M 49 11 L 51 16 L 56 18 L 51 20 L 49 25 L 47 20 L 42 18 L 47 16 Z" fill="#E5614A"/>
+        </svg>
+        <div>
+          <div class="font-extrabold tracking-[0.14em] text-sm sm:text-base">NOEMA-LASER</div>
+          <div class="text-[10px] tracking-[0.18em] text-slate-500 uppercase">AI Guided · Precise · Personalized</div>
         </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-navy leading-[1.05] tracking-tight mb-5">
-          AI-Guided Precision<br/>Laser Therapy
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 mb-10 max-w-md leading-relaxed">
-          Real-time intelligence. Better outcomes. Safer care.
-        </p>
-
-        <div class="flex flex-wrap gap-6 sm:gap-8 mb-8">
-          <div class="feature-tile flex flex-col items-center text-center w-24">
-            <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3 border border-blue-100">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
-            </div>
-            <span class="text-[11px] font-bold tracking-wider text-blue-700">AI-GUIDED<br/>PRECISION</span>
-          </div>
-          <div class="feature-tile flex flex-col items-center text-center w-24">
-            <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3 border border-blue-100">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </div>
-            <span class="text-[11px] font-bold tracking-wider text-blue-700">PORTABLE &amp;<br/>COMPACT</span>
-          </div>
-          <div class="feature-tile flex flex-col items-center text-center w-24">
-            <div class="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center mb-3 border border-purple-100">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B3FA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-            </div>
-            <span class="text-[11px] font-bold tracking-wider text-brand-purple">OUTPATIENT<br/>CARE</span>
-          </div>
-        </div>
-        <div class="accent-bar w-full max-w-md"></div>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#problem" class="hover:text-navy">Problem</a>
+        <a href="#solution" class="hover:text-navy">Solution</a>
+        <a href="#evidence" class="hover:text-navy">Evidence</a>
+        <a href="#contact" class="hover:text-navy">Contact</a>
       </div>
+      <a href="#contact" class="hidden sm:inline-flex bg-navy text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-navy-light transition-colors">Start a conversation</a>
+    </nav>
+  </header>
 
-      <div class="relative bg-white">
-        <img src="images/hero_clinicians.png" alt="Clinician treating patient with Noema-Laser device" class="w-full h-full object-cover min-h-[420px]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-        <div class="placeholder-img light hidden h-full min-h-[420px]">
+  <main id="top">
+
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-navy-soft/50"></div>
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative">
+        <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-12 lg:gap-16 items-center">
           <div>
-            <div class="text-2xl mb-2">📷</div>
-            Hero photo: clinician treating<br/>patient with Noema-Laser device<br/><span class="text-xs opacity-70">→ replace with images/hero_clinicians.png</span>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-7">
+              <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+              <span class="text-xs font-bold tracking-wide text-slate-600 uppercase">Proposed outpatient precision-control platform</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[0.98] text-navy mb-6">
+              AI-Guided<br />Precision<br class="hidden sm:block" /> Laser Therapy
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">
+              Noema-Laser is designed to help clinicians deliver the safest effective laser dose by combining real-time thermal sensing, patient-specific heat modeling, and safety-constrained AI control.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mb-10">
+              <a href="#solution" class="inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">See how it works</a>
+              <a href="#evidence" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">View evidence pathway</a>
+            </div>
+            <div class="grid grid-cols-3 gap-4 max-w-xl">
+              <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
+                <div class="text-2xl font-black text-brand-blue">01</div>
+                <div class="text-sm font-bold mt-1">See heat</div>
+              </div>
+              <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
+                <div class="text-2xl font-black text-brand-purple">02</div>
+                <div class="text-sm font-bold mt-1">Predict spread</div>
+              </div>
+              <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
+                <div class="text-2xl font-black text-brand-teal">03</div>
+                <div class="text-sm font-bold mt-1">Control dose</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="bg-navy text-white">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-        <div class="px-8 sm:px-12 lg:px-16 py-14 lg:py-20 flex flex-col justify-center">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-6 text-blue-100">
-            Smarter Energy.<br/>
-            Safer Patients.<br/>
-            Better Outcomes.
-          </h2>
-          <p class="text-base sm:text-lg text-blue-200/90 leading-relaxed max-w-md">
-            Noema-Laser combines real-time thermal imaging with AI-driven control to deliver precise treatment while protecting healthy tissue.
-          </p>
-        </div>
-        <div class="relative bg-gradient-to-br from-navy-light via-navy to-navy-deep min-h-[280px] flex items-center justify-center overflow-hidden">
-          <svg class="w-full h-full absolute inset-0 opacity-40" viewBox="0 0 400 300" preserveAspectRatio="none">
-            <path d="M0,200 Q100,150 200,180 T400,160 L400,300 L0,300 Z" fill="#6B3FA0" opacity="0.3"/>
-            <path d="M0,220 Q100,180 200,200 T400,190 L400,300 L0,300 Z" fill="#1d4ed8" opacity="0.4"/>
-            <g opacity="0.6">
-              <circle cx="60" cy="120" r="1.5" fill="#a78bfa"/>
-              <circle cx="120" cy="80" r="1" fill="#a78bfa"/>
-              <circle cx="180" cy="140" r="1.5" fill="#a78bfa"/>
-              <circle cx="240" cy="60" r="1" fill="#a78bfa"/>
-              <circle cx="300" cy="100" r="1.5" fill="#a78bfa"/>
-              <circle cx="350" cy="140" r="1" fill="#a78bfa"/>
-              <circle cx="80" cy="170" r="1" fill="#60a5fa"/>
-              <circle cx="160" cy="220" r="1.5" fill="#60a5fa"/>
-              <circle cx="260" cy="180" r="1" fill="#60a5fa"/>
-              <circle cx="330" cy="220" r="1.5" fill="#60a5fa"/>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-0">
-      <div class="bg-navy text-white px-8 lg:px-10 py-14 lg:py-16 relative overflow-hidden">
-        <div class="relative z-10">
-          <h3 class="text-2xl lg:text-3xl font-bold mb-5 leading-tight">
-            AI-Guided<br/>Precision
-          </h3>
-          <p class="text-blue-200/90 text-sm lg:text-base leading-relaxed max-w-xs">
-            Real-time thermal feedback and AI control deliver the right energy, exactly where it's needed.
-          </p>
-        </div>
-        <div class="mt-8 flex justify-center">
-          <img src="images/skin.png" alt="Skin tissue cross-section with laser beam" class="max-w-full h-auto rounded-md" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-          <div class="placeholder-img hidden w-full rounded-md text-blue-200/60">
-            <div class="text-sm">
-              <div class="text-2xl mb-2">🔬</div>
-              Skin tissue cross-section<br/>with laser beam illustration<br/><span class="text-xs opacity-70">→ images/skin.png</span>
+          <div class="relative">
+            <div class="absolute -inset-6 bg-gradient-to-tr from-brand-blue/10 via-brand-purple/10 to-brand-coral/10 rounded-[2.5rem] blur-2xl"></div>
+            <div class="relative bg-white rounded-[2rem] shadow-soft overflow-hidden border border-slate-100">
+              <img src="images/hero_clinicians.png" alt="Clinician using a precision laser device with a patient in an outpatient clinic" class="w-full h-[480px] object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="placeholder-img hidden h-[480px]">
+                <div>
+                  <div class="text-3xl mb-2">📷</div>
+                  Replace with <strong>images/hero_clinicians.png</strong><br />clinician + patient + device hero image
+                </div>
+              </div>
+              <div class="p-5 bg-white grid grid-cols-3 gap-3 text-center">
+                <div class="rounded-2xl bg-blue-50 p-4">
+                  <div class="text-xs font-black text-blue-700 uppercase">AI-guided</div>
+                </div>
+                <div class="rounded-2xl bg-purple-50 p-4">
+                  <div class="text-xs font-black text-brand-purple uppercase">Portable</div>
+                </div>
+                <div class="rounded-2xl bg-teal-50 p-4">
+                  <div class="text-xs font-black text-brand-teal uppercase">Outpatient</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="bg-slate-50 px-8 lg:px-10 py-14 lg:py-16">
-        <h3 class="text-2xl lg:text-3xl font-bold text-navy mb-5 leading-tight">
-          Portable.<br/>Powerful.<br/>Built for<br/>Outpatient Care.
-        </h3>
-        <p class="text-slate-600 text-sm lg:text-base leading-relaxed mb-6 max-w-xs">
-          Compact, mobile, and easy to integrate into any dermatology or surgical practice.
+    <section id="problem" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mb-12">
+          <div class="accent-bar w-24 mb-5"></div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-navy mb-5">The outpatient control gap</h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Current skin-lesion treatment decisions balance clearance, cosmetic outcome, side effects, workflow, and follow-up burden. Laser therapy is promising, but broader adoption needs better real-time feedback and reproducible dose control.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card-hover border border-slate-200 rounded-3xl p-7 bg-white">
+            <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center mb-5">
+              <span class="text-2xl">🔥</span>
+            </div>
+            <h3 class="text-xl font-extrabold mb-3">Over-treatment risk</h3>
+            <p class="text-slate-600 leading-relaxed">Too much thermal spread can injure healthy tissue, worsening scarring, pigment changes, or delayed healing.</p>
+          </div>
+          <div class="card-hover border border-slate-200 rounded-3xl p-7 bg-white">
+            <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center mb-5">
+              <span class="text-2xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-extrabold mb-3">Under-treatment risk</h3>
+            <p class="text-slate-600 leading-relaxed">Too little coverage can leave viable lesion tissue behind, increasing the chance of repeat procedures.</p>
+          </div>
+          <div class="card-hover border border-slate-200 rounded-3xl p-7 bg-white">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-5">
+              <span class="text-2xl">🧭</span>
+            </div>
+            <h3 class="text-xl font-extrabold mb-3">Workflow uncertainty</h3>
+            <p class="text-slate-600 leading-relaxed">Clinicians need practical tools that fit outpatient care without requiring hospital-scale imaging infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="py-20 lg:py-28 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="accent-bar w-24 mx-auto mb-5"></div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-navy mb-5">A control layer for laser therapy</h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Noema-Laser does not replace the clinician. It gives clinicians real-time thermal intelligence before and during dose delivery.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
+            <div class="h-56 bg-white">
+              <img src="images/thermal_feedback.png" alt="Thermal imaging feedback visualization" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="placeholder-img hidden h-full">images/thermal_feedback.png</div>
+            </div>
+            <div class="p-7">
+              <div class="text-sm font-black text-brand-blue uppercase tracking-wider mb-3">Step 1</div>
+              <h3 class="text-2xl font-black mb-3">Real-time thermal sensing</h3>
+              <p class="text-slate-600 leading-relaxed">A FLIR-class thermal camera estimates skin temperature response as treatment progresses.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
+            <div class="h-56 bg-white">
+              <img src="images/digital_twin.png" alt="Patient-specific digital twin heat model" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="placeholder-img hidden h-full">images/digital_twin.png</div>
+            </div>
+            <div class="p-7">
+              <div class="text-sm font-black text-brand-purple uppercase tracking-wider mb-3">Step 2</div>
+              <h3 class="text-2xl font-black mb-3">Patient-specific digital twin</h3>
+              <p class="text-slate-600 leading-relaxed">A physics-based bioheat model predicts heat spread before unsafe settings reach the patient.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden card-hover">
+            <div class="h-56 bg-white">
+              <img src="images/safety_control.png" alt="Safety-constrained AI dose control" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+              <div class="placeholder-img hidden h-full">images/safety_control.png</div>
+            </div>
+            <div class="p-7">
+              <div class="text-sm font-black text-brand-teal uppercase tracking-wider mb-3">Step 3</div>
+              <h3 class="text-2xl font-black mb-3">Safety-constrained AI control</h3>
+              <p class="text-slate-600 leading-relaxed">The controller selects a dose intended to cover the lesion while respecting healthy-tissue safety thresholds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence" class="mesh text-white py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-12 items-center">
+          <div>
+            <div class="accent-bar w-24 mb-5"></div>
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tight mb-6">Built for evidence, not hype.</h2>
+            <p class="text-lg text-blue-100/90 leading-relaxed mb-8">
+              Noema-Laser is currently a preclinical platform concept. The next milestones are hardware proof-of-concept, phantom testing, ex vivo validation, and FDA Q-Sub engagement.
+            </p>
+            <div class="space-y-4">
+              <div class="glass rounded-2xl p-5">
+                <div class="font-extrabold">Simulation-validated control logic</div>
+                <div class="text-sm text-blue-100/80 mt-1">In-silico safety and dosing benchmarks guide prototype design.</div>
+              </div>
+              <div class="glass rounded-2xl p-5">
+                <div class="font-extrabold">Outpatient-first workflow</div>
+                <div class="text-sm text-blue-100/80 mt-1">Designed for clinics without MRI-suite infrastructure.</div>
+              </div>
+              <div class="glass rounded-2xl p-5">
+                <div class="font-extrabold">Regulatory-aware roadmap</div>
+                <div class="text-sm text-blue-100/80 mt-1">FDA pathway and evidence requirements to be confirmed through Q-Sub.</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white/95 text-navy rounded-[2rem] p-7 lg:p-9 shadow-soft">
+            <h3 class="text-2xl font-black mb-6">Why clinicians may care</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-slate-50 p-5 border border-slate-100">
+                <div class="text-3xl font-black text-brand-teal mb-2">✓</div>
+                <div class="font-extrabold mb-1">Measured dose delivery</div>
+                <div class="text-sm text-slate-600">Temperature feedback instead of blind energy delivery.</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-5 border border-slate-100">
+                <div class="text-3xl font-black text-brand-teal mb-2">✓</div>
+                <div class="font-extrabold mb-1">Repeat-procedure reduction goal</div>
+                <div class="text-sm text-slate-600">Designed to improve thermal coverage while protecting nearby tissue.</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-5 border border-slate-100">
+                <div class="text-3xl font-black text-brand-teal mb-2">✓</div>
+                <div class="font-extrabold mb-1">Documentation layer</div>
+                <div class="text-sm text-slate-600">Treatment maps and dose decisions can support QA and future clinical evidence.</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-5 border border-slate-100">
+                <div class="text-3xl font-black text-brand-teal mb-2">✓</div>
+                <div class="font-extrabold mb-1">Clinic-friendly economics</div>
+                <div class="text-sm text-slate-600">Software-first model with future integrated-device pathway.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+          <div>
+            <div class="accent-bar w-24 mb-5"></div>
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-navy mb-5">Portable. Powerful. Built for outpatient care.</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-8">
+              A compact system concept for dermatology and surgical practices — with software intelligence that can eventually integrate with third-party laser platforms.
+            </p>
+            <ul class="space-y-4 text-slate-700">
+              <li class="flex gap-3"><span class="text-brand-teal font-black">●</span><span>Real-time temperature feedback at the point of care</span></li>
+              <li class="flex gap-3"><span class="text-brand-teal font-black">●</span><span>Patient-specific dose planning through bioheat modeling</span></li>
+              <li class="flex gap-3"><span class="text-brand-teal font-black">●</span><span>Safety-constrained treatment decisions before each adjustment</span></li>
+            </ul>
+          </div>
+          <div class="relative bg-slate-50 rounded-[2rem] p-8 border border-slate-100 shadow-soft">
+            <img src="images/device.png" alt="Noema-Laser device concept" class="w-full max-h-[460px] object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+            <div class="placeholder-img hidden rounded-3xl">Replace with <strong class="ml-1">images/device.png</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-slate-50 py-20 lg:py-28 border-t border-slate-100">
+      <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div class="accent-bar w-24 mx-auto mb-5"></div>
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-navy mb-5">Let’s build safer laser therapy.</h2>
+        <p class="text-lg text-slate-600 leading-relaxed mb-10">
+          For investor conversations, clinical collaborations, pilot partners, media inquiries, or regulatory and reimbursement discussions.
         </p>
-        <div class="flex justify-center">
-          <img src="images/device.png" alt="Noema-Laser portable device" class="max-w-full h-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-          <div class="placeholder-img light hidden w-full">
-            <div class="text-sm">
-              <div class="text-2xl mb-2">⚙️</div>
-              Device product shot<br/><span class="text-xs opacity-70">→ images/device.png</span>
-            </div>
-          </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <a href="mailto:aniruddha.bora@txstate.edu" class="inline-flex items-center justify-center rounded-full bg-navy text-white px-7 py-4 font-bold hover:bg-navy-light transition-colors">Contact Noema-Laser</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-7 py-4 font-bold text-navy hover:border-navy transition-colors">LinkedIn</a>
         </div>
-      </div>
-
-      <div class="relative min-h-[420px] bg-navy">
-        <img src="images/clinician_close.png" alt="Clinician performing precision laser treatment" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy-deep/95 via-navy/40 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-10 text-white">
-          <h3 class="text-2xl lg:text-3xl font-bold mb-4 leading-tight">
-            Designed for<br/>Clinicians.<br/>Focused on<br/>Patients.
-          </h3>
-          <p class="text-blue-100/90 text-sm lg:text-base leading-relaxed max-w-xs">
-            Intuitive workflow.<br/>Real-time confidence.<br/>Better outcomes.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-0">
-      <div class="bg-navy text-white px-8 lg:px-12 py-14 lg:py-16">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-          <div class="text-center">
-            <div class="flex justify-center mb-4">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
-            </div>
-            <h4 class="font-bold text-base lg:text-lg mb-2">Safety First</h4>
-            <p class="text-xs lg:text-sm text-blue-200/80 leading-relaxed">
-              AI control keeps critical structures safe with real-time monitoring.
-            </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="bg-white rounded-3xl p-7 border border-slate-100">
+            <div class="text-4xl font-black text-navy">2</div>
+            <div class="text-sm font-bold text-slate-500 mt-2 uppercase tracking-wider">Provisional patents</div>
           </div>
-          <div class="text-center">
-            <div class="flex justify-center mb-4">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="white"/></svg>
-            </div>
-            <h4 class="font-bold text-base lg:text-lg mb-2">Better Outcomes</h4>
-            <p class="text-xs lg:text-sm text-blue-200/80 leading-relaxed">
-              More precise treatments reduce recurrence and repeat procedures.
-            </p>
+          <div class="bg-white rounded-3xl p-7 border border-slate-100">
+            <div class="text-4xl font-black text-navy">2+</div>
+            <div class="text-sm font-bold text-slate-500 mt-2 uppercase tracking-wider">Peer-reviewed foundations</div>
           </div>
-          <div class="text-center">
-            <div class="flex justify-center mb-4">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-            </div>
-            <h4 class="font-bold text-base lg:text-lg mb-2">Save Time</h4>
-            <p class="text-xs lg:text-sm text-blue-200/80 leading-relaxed">
-              Streamlined workflow means more patients helped every day.
-            </p>
-          </div>
-          <div class="text-center">
-            <div class="flex justify-center mb-4">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="13" width="3" height="7"/><rect x="11" y="9" width="3" height="11"/><rect x="16" y="5" width="3" height="15"/></svg>
-            </div>
-            <h4 class="font-bold text-base lg:text-lg mb-2">Proven Technology</h4>
-            <p class="text-xs lg:text-sm text-blue-200/80 leading-relaxed">
-              Backed by simulation, science, and a clear path to clinical impact.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative bg-slate-100 min-h-[320px] flex items-center">
-        <img src="images/clinic-exterior.jpg" alt="Modern dermatology clinic" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/70"></div>
-        <div class="relative px-8 lg:px-10 py-10 max-w-md">
-          <h3 class="text-xl lg:text-2xl font-bold text-navy mb-3 leading-tight">
-            <span class="text-brand-purple">The Future of Laser Therapy</span><br/>
-            <span class="text-navy">is Intelligent.</span>
-          </h3>
-          <p class="text-sm text-slate-600 mb-6 leading-relaxed">
-            Noema-Laser is redefining outpatient care with AI-guided precision.
-          </p>
-          <a href="#contact" class="inline-block border-2 border-brand-purple text-brand-purple px-6 py-2 rounded-full text-sm font-semibold hover:bg-brand-purple hover:text-white transition-colors">
-            Learn More
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="bg-white px-8 lg:px-16 py-16 lg:py-24 border-t border-slate-100">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl lg:text-4xl font-bold text-navy mb-4 leading-tight">
-          Get in touch
-        </h2>
-        <p class="text-slate-600 text-base lg:text-lg mb-10 leading-relaxed">
-          For investor conversations, clinical collaborations, or media inquiries.
-        </p>
-        <div class="flex flex-col items-center gap-6 mb-10">
-          <a href="mailto:aniruddha.bora@txstate.edu" class="text-xl lg:text-2xl font-semibold text-navy hover:text-brand-purple transition-colors">
-            aniruddha.bora@txstate.edu
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="text-sm text-slate-500 hover:text-navy transition-colors">
-            LinkedIn →
-          </a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-12 border-t border-slate-100">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-navy mb-1">2</div>
-            <div class="text-xs text-slate-500 uppercase tracking-wider">Provisional<br/>Patents</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-navy mb-1">2</div>
-            <div class="text-xs text-slate-500 uppercase tracking-wider">Peer-Reviewed<br/>Publications</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-navy mb-1">1</div>
-            <div class="text-xs text-slate-500 uppercase tracking-wider">NMI Submission<br/>Under Review</div>
+          <div class="bg-white rounded-3xl p-7 border border-slate-100">
+            <div class="text-4xl font-black text-navy">Q-Sub</div>
+            <div class="text-sm font-bold text-slate-500 mt-2 uppercase tracking-wider">Planned FDA milestone</div>
           </div>
         </div>
       </div>
@@ -282,17 +336,11 @@
 
   </main>
 
-  <footer class="bg-navy-deep text-blue-200/70 px-8 py-8">
-    <div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-      <div class="flex items-center gap-3">
-        <svg viewBox="0 0 60 60" width="24" height="24" aria-hidden="true">
-          <text x="30" y="40" text-anchor="middle" font-family="Inter" font-weight="800" font-size="26" fill="#a78bfa">N</text>
-          <path d="M 49 11 L 51 16 L 56 18 L 51 20 L 49 25 L 47 20 L 42 18 L 47 16 Z" fill="#E5614A"/>
-        </svg>
-        <span>© 2026 Noema-Laser · Texas State University</span>
-      </div>
-      <div class="text-blue-300/50">
-        Provisional Patent 63/996,145 · Built by the SPARKS Lab
+  <footer class="bg-navy-deep text-blue-200/70 px-6 lg:px-8 py-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-5 text-xs leading-relaxed">
+      <div>© 2026 Noema-Laser · Built by the SPARKS Lab · Texas State University</div>
+      <div class="md:text-right max-w-xl">
+        Research-stage platform concept. Noema-Laser is not FDA-cleared. Clinical performance, reimbursement, and regulatory pathway require validation.
       </div>
     </div>
   </footer>
